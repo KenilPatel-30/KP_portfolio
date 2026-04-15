@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme - #FFFFFF base */
+    --background: 0 0% 100%;
+    --foreground: 80 5% 12%;
+    
+    --card: 0 0% 99%;
+    --card-foreground: 80 5% 12%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 80 5% 12%;
+    
+    --primary: 84 81% 44%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 80 3% 94%;
+    --secondary-foreground: 80 5% 15%;
+    
+    --muted: 80 3% 92%;
+    --muted-foreground: 80 5% 35%;
+    
+    --accent: 84 81% 44%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 80 5% 82%;
+    --input: 80 5% 78%;
+    --ring: 84 81% 44%;
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark theme - #1E1F1C base */
+    --background: 80 5% 12%;
+    --foreground: 0 0% 100%;
+    
+    --card: 80 5% 18%;
+    --card-foreground: 0 0% 100%;
+    
+    --popover: 80 5% 18%;
+    --popover-foreground: 0 0% 100%;
+    
+    --primary: 84 81% 44%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 80 5% 16%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 80 5% 16%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 84 81% 44%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 80 5% 22%;
+    --input: 80 5% 22%;
+    --ring: 84 81% 44%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Prevent section headers from hiding behind navbar */
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  ::selection {
+    @apply bg-primary/30 text-foreground;
+  }
+}
+
+@layer components {
+  /* Glassmorphism navbar */
+  .glass-nav {
+    @apply backdrop-blur-xl bg-background/40 border-b border-border/30 shadow-sm;
+  }
+  
+  /* Text reveal animation */
+  .text-reveal {
+    @apply opacity-0 translate-y-8;
+    animation: textReveal 0.8s ease-out forwards;
+  }
+  
+  .text-reveal-delay-1 {
+    animation-delay: 0.1s;
+  }
+  
+  .text-reveal-delay-2 {
+    animation-delay: 0.2s;
+  }
+  
+  .text-reveal-delay-3 {
+    animation-delay: 0.3s;
+  }
+  
+  .text-reveal-delay-4 {
+    animation-delay: 0.4s;
+  }
+  
+  /* Accent underline */
+  .accent-underline {
+    @apply relative inline-block;
+  }
+  
+  .accent-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[2px] bg-primary scale-x-0 origin-left transition-transform duration-300;
+  }
+  
+  .accent-underline:hover::after {
+    @apply scale-x-100;
+  }
+  
+  /* Project card hover effect */
+  .project-card {
+    @apply relative overflow-hidden;
+  }
+  
+  .project-card .project-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-0 transition-opacity duration-500;
+  }
+  
+  .project-card:hover .project-overlay {
+    @apply opacity-100;
+  }
+  
+  .project-card .project-content {
+    @apply absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 transition-all duration-500;
+  }
+  
+  .project-card:hover .project-content {
+    @apply translate-y-0 opacity-100;
+  }
+  
+  /* Interactive button */
+  .btn-interactive {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+  
+  .btn-interactive::before {
+    content: '';
+    @apply absolute inset-0 bg-primary/10 scale-x-0 origin-left transition-transform duration-300;
+  }
+  
+  .btn-interactive:hover::before {
+    @apply scale-x-100;
+  }
+  
+  .btn-interactive:active {
+    @apply scale-95;
+  }
+  
+  /* Gallery card */
+  .gallery-card {
+    @apply relative overflow-hidden rounded-lg transition-all duration-500;
+  }
+  
+  .gallery-card::before {
+    content: '';
+    @apply absolute inset-0 border border-primary/0 rounded-lg transition-all duration-300 pointer-events-none z-10;
+  }
+  
+  .gallery-card:hover::before {
+    @apply border-primary/40;
+  }
+  
+  .gallery-card:hover {
+    @apply -translate-y-1;
+  }
+  
+  /* Dot accent */
+  .dot-accent::before {
+    content: '•';
+    @apply text-primary mr-2;
+  }
+  
+  /* Section divider */
+  .section-divider {
+    @apply w-12 h-[2px] bg-primary;
+  }
+  
+  /* Fade in animation */
+  .fade-in-up {
+    @apply opacity-0 translate-y-6;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  /* Stagger children */
+  .stagger-children > * {
+    @apply opacity-0 translate-y-4;
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  
+  .stagger-children > *:nth-child(1) { animation-delay: 0s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.5s; }
+}
+
+@layer utilities {
+  /* Label text */
+  .text-label {
+    @apply text-xs uppercase tracking-[0.2em] text-muted-foreground font-medium;
+  }
+  
+  /* Large display text */
+  .text-display {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1];
+  }
+  
+  /* Editorial body */
+  .text-editorial {
+    @apply text-lg md:text-xl font-light leading-relaxed text-muted-foreground;
+  }
+}
+
+@keyframes textReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/40;
+}
