@@ -179,15 +179,10 @@ const About = () => {
                 <div>
                   <p className="text-label mb-1">Education</p>
                   <p className="text-foreground">B.Tech CSE — GSFC University</p>
-                  <p className="text-sm text-muted-foreground">CGPA: 7.74 (Ongoing)</p>
-                </div>
-                <div>
-                  <p className="text-label mb-1">Schooling</p>
-                  <p className="text-foreground">10th & 12th — Surat, Gujarat</p>
                 </div>
                 <div>
                   <p className="text-label mb-1">Location</p>
-                  <p className="text-foreground">India</p>
+                  <p className="text-foreground">Surat, Gujarat, India</p>
                 </div>
               </div>
             </motion.div>
