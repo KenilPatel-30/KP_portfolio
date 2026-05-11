@@ -78,9 +78,9 @@ const Navbar = () => {
             <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
               <a
                 href="#"
-                className="text-lg font-semibold tracking-tight text-foreground hover:text-primary transition-colors duration-300"
+                className="text-xl font-bold tracking-tighter text-foreground hover:text-primary transition-colors duration-300"
               >
-                portfolio<span className="text-primary">.</span>
+                Kenil<span className="text-primary">Patel</span>
               </a>
 
               <div className="hidden md:flex items-center gap-8">

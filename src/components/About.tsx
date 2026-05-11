@@ -63,7 +63,7 @@ const About = () => {
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = 'Kenil_Patel_Resume.pdf';
-    link.download = 'Kenil_Patel_Resume.pdf';
+    link.download = 'Kenil Patel.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
