@@ -4,6 +4,7 @@ import { motion, type Variants } from 'framer-motion';
 import { Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import profileImage from '@/assets/profile-kenil.jpg';
+import origamiImage from '@/assets/about-origami.png';
 
 const skillGroups = [
   {
@@ -84,48 +85,47 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-32 relative">
+    <section id="about" className="py-20 relative">
       <div className="container mx-auto px-6 md:px-12">
         {/* About Me Section */}
-        <div className="grid lg:grid-cols-12 gap-16 items-start mb-32">
-          {/* Image side - Organic blob shape */}
+        <div className="grid lg:grid-cols-12 gap-16 items-start mb-20">
+          {/* Image side - Creative Origami */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: '-100px' }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-5"
+            className="lg:col-span-5 relative"
           >
-            <div className="relative">
-              {/* Organic blob-shaped frame */}
-              <div className="relative w-full max-w-md mx-auto">
-                <svg
-                  viewBox="0 0 400 500"
-                  className="w-full h-auto"
-                  style={{ filter: 'drop-shadow(0 20px 40px hsl(var(--primary) / 0.1))' }}
-                >
-                  <defs>
-                    <clipPath id="organicShape">
-                      <path d="M200,10 C320,10 380,80 385,180 C390,280 370,380 320,440 C270,500 130,500 80,440 C30,380 10,280 15,180 C20,80 80,10 200,10 Z" />
-                    </clipPath>
-                  </defs>
-                  <image
-                    href={profileImage}
-                    x="0"
-                    y="0"
-                    width="400"
-                    height="500"
-                    clipPath="url(#organicShape)"
-                    preserveAspectRatio="xMidYMid slice"
-                  />
-                  <path
-                    d="M200,10 C320,10 380,80 385,180 C390,280 370,380 320,440 C270,500 130,500 80,440 C30,380 10,280 15,180 C20,80 80,10 200,10 Z"
-                    fill="none"
-                    stroke="hsl(var(--primary) / 0.3)"
-                    strokeWidth="2"
-                  />
-                </svg>
-              </div>
+            <div className="relative w-full max-w-md mx-auto group">
+              {/* Soft primary glow behind the object */}
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
+              
+              {/* Floating Animation for the Origami Bust */}
+              <motion.div
+                animate={{ 
+                  y: [0, -15, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative z-10"
+              >
+                <img
+                  src={origamiImage}
+                  alt="Creative Origami"
+                  className="w-full h-auto drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
+                />
+              </motion.div>
+
+              {/* Decorative accent line/shadow */}
+              <motion.div 
+                className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-primary/30 rounded-full blur-sm"
+                animate={{ width: [60, 100, 60], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
             </div>
           </motion.div>
 
@@ -191,7 +191,7 @@ const About = () => {
             <motion.div variants={itemVariants}>
               <button
                 onClick={handleDownload}
-                className="inline-flex items-center gap-3 px-6 py-3 rounded-full font-medium border-2 border-primary text-primary transition-all duration-300 hover:shadow-[0_0_20px_hsl(84,81%,44%,0.3)] hover:border-primary/80 active:scale-95"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full font-medium border-2 border-primary text-primary transition-all duration-300 hover:bg-primary/5 active:scale-95"
               >
                 <Download className="w-4 h-4" />
                 <span>Download Resume</span>
@@ -206,7 +206,7 @@ const About = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6 }}
-          className="mb-32"
+          className="mb-20"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}

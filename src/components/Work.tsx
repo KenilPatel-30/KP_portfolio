@@ -101,30 +101,60 @@ const itemVariants: Variants = {
 
 const Work = () => {
   const [selectedItem, setSelectedItem] = useState<WorkItem | null>(null);
+  const [activeTab, setActiveTab] = useState<'Print Media' | 'Digital Media'>('Print Media');
+
+  const tabs = ['Print Media', 'Digital Media'] as const;
 
   return (
-    <section id="portfolio" className="py-32 relative">
+    <section id="portfolio" className="py-20 relative">
       <div className="container mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="space-y-4 mb-16"
-        >
-          <p className="text-label">Portfolio</p>
-          <div className="section-divider" />
-        </motion.div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.6 }}
+            className="space-y-4"
+          >
+            <p className="text-label">Portfolio</p>
+            <div className="section-divider" />
+          </motion.div>
+
+          {/* Media Tabs */}
+          <div className="flex items-center gap-12">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className="relative py-2 group"
+              >
+                <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 ${
+                  activeTab === tab ? 'text-foreground' : 'text-muted-foreground hover:text-foreground/70'
+                }`}>
+                  {tab}
+                </span>
+                {activeTab === tab && (
+                  <motion.div
+                    layoutId="activeTab"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
+          key={activeTab}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {workItems.map((item) => (
-            <motion.div key={item.id} variants={itemVariants}>
+            <motion.div key={`${activeTab}-${item.id}`} variants={itemVariants} initial="hidden" animate="visible">
               <PortfolioCard
                 title={item.title}
                 category={item.category}
