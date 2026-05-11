@@ -8,14 +8,16 @@ import origamiImage from '@/assets/about-origami.png';
 
 const skillGroups = [
   {
-    title: 'Technical Skills',
-    skills: [
-      { name: 'UI/UX Design', primary: true },
-      { name: 'Graphic Design', primary: true },
-      { name: 'Visual Design', primary: true },
-      { name: 'C', primary: false },
-      { name: 'Python (Basics)', primary: false },
-    ],
+    title: 'UI/UX & Graphic Designing',
+    skills: ['Wireframing', 'User Flows', 'Prototyping', 'Design Systems', 'Visual Design', 'Branding', 'Typography', 'Figma', 'Adobe Photoshop', 'Adobe Illustrator', 'Affinity', 'Canva'],
+  },
+  {
+    title: 'Programming Languages',
+    skills: ['HTML', 'CSS', 'JavaScript', 'Python', 'C', 'SQL'],
+  },
+  {
+    title: 'Tools & Platforms',
+    skills: ['Framer', 'Dora AI', 'VS Code', 'Cursor', 'ChatGPT', 'AI chatbots', 'Antigravity', 'Lovable', 'Bolt', 'Nessus', 'Autopsy', 'FTK Imager', 'Acunetix', 'CapCut'],
   },
 ];
 
@@ -87,6 +89,7 @@ const About = () => {
   return (
     <section id="about" className="py-20 relative">
       <div className="container mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
         {/* About Me Section */}
         <div className="grid lg:grid-cols-12 gap-16 items-start mb-20">
           {/* Image side - Creative Origami */}
@@ -100,10 +103,10 @@ const About = () => {
             <div className="relative w-full max-w-md mx-auto group">
               {/* Soft primary glow behind the object */}
               <div className="absolute inset-0 bg-primary/20 rounded-full blur-[100px] opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
-              
+
               {/* Floating Animation for the Origami Bust */}
               <motion.div
-                animate={{ 
+                animate={{
                   y: [0, -15, 0],
                 }}
                 transition={{
@@ -121,7 +124,7 @@ const About = () => {
               </motion.div>
 
               {/* Decorative accent line/shadow */}
-              <motion.div 
+              <motion.div
                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-primary/30 rounded-full blur-sm"
                 animate={{ width: [60, 100, 60], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
@@ -178,7 +181,7 @@ const About = () => {
               <div className="flex flex-wrap gap-x-12 gap-y-6">
                 <div>
                   <p className="text-label mb-1">Education</p>
-                  <p className="text-foreground">B.Tech CSE — GSFC University</p>
+                  <p className="text-foreground">B.Tech CSE, GSFC University</p>
                 </div>
                 <div>
                   <p className="text-label mb-1">Location</p>
@@ -224,24 +227,21 @@ const About = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-12"
+            className="grid lg:grid-cols-12 gap-8 lg:gap-12"
           >
-            {skillGroups.map((group) => (
-              <motion.div key={group.title} variants={itemVariants}>
-                <h3 className="text-lg font-semibold mb-6 flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-primary" />
+            {skillGroups.map((group, index) => (
+              <motion.div
+                key={group.title}
+                variants={itemVariants}
+                className={`${index === 0 ? 'lg:col-span-12' : 'lg:col-span-6'} bg-card/30 p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-colors duration-500`}
+              >
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-3 text-primary">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
                   {group.title}
                 </h3>
-                <div className="space-y-3">
-                  {group.skills.map((skill) => (
-                    <p
-                      key={skill.name}
-                      className="text-lg transition-opacity duration-300 text-foreground"
-                    >
-                      {skill.name}
-                    </p>
-                  ))}
-                </div>
+                <p className="text-muted-foreground leading-relaxed text-lg">
+                  {group.skills.join(', ')}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -294,6 +294,7 @@ const About = () => {
             ))}
           </div>
         </motion.div>
+        </div>
       </div>
     </section>
   );

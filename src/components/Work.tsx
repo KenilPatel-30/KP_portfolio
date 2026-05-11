@@ -108,38 +108,39 @@ const Work = () => {
   return (
     <section id="portfolio" className="py-20 relative">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
-          >
-            <p className="text-label">Portfolio</p>
-            <div className="section-divider" />
-          </motion.div>
+        <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.6 }}
+          className="space-y-4 mb-12 text-center"
+        >
+          <p className="text-label mx-auto">Portfolio</p>
+          <div className="section-divider mx-auto" />
+        </motion.div>
 
-          {/* Media Tabs */}
-          <div className="flex items-center gap-12">
+        {/* Premium Media Tabs - Pill Style */}
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex items-center p-1.5 bg-card/40 border border-border/40 rounded-full backdrop-blur-md">
             {tabs.map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className="relative py-2 group"
+                className="relative px-8 py-2.5 rounded-full transition-colors duration-300"
               >
-                <span className={`text-lg md:text-xl font-semibold transition-colors duration-300 ${
+                {activeTab === tab && (
+                  <motion.div
+                    layoutId="activePill"
+                    className="absolute inset-0 bg-muted-foreground/10 border border-white/5 rounded-full shadow-lg"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <span className={`relative z-10 text-sm md:text-base font-bold tracking-tight transition-colors duration-300 ${
                   activeTab === tab ? 'text-foreground' : 'text-muted-foreground hover:text-foreground/70'
                 }`}>
                   {tab}
                 </span>
-                {activeTab === tab && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
               </button>
             ))}
           </div>
@@ -221,6 +222,7 @@ const Work = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </section>
   );
 };

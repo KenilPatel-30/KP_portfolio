@@ -75,37 +75,39 @@ const Navbar = () => {
               isScrolled ? 'glass-nav py-4' : 'bg-transparent py-6'
             }`}
           >
-            <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-              <a
-                href="#"
-                className="text-xl font-bold tracking-tighter text-foreground hover:text-primary transition-colors duration-300"
-              >
-                Kenil<span className="text-primary">Patel</span>
-              </a>
+            <div className="container mx-auto px-6 md:px-12">
+              <div className="max-w-7xl mx-auto flex items-center justify-between">
+                <a
+                  href="#"
+                  className="text-xl font-bold tracking-tighter text-foreground hover:text-primary transition-colors duration-300"
+                >
+                  Kenil<span className="text-primary">Patel</span>
+                </a>
 
-              <div className="hidden md:flex items-center gap-8">
-                {topNavLinks.map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-primary hover:font-semibold transition-all duration-300"
-                  >
-                    {link.name}
-                  </a>
-                ))}
+                <div className="hidden md:flex items-center gap-8">
+                  {topNavLinks.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-primary hover:font-semibold transition-all duration-300"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+
+                <button
+                  onClick={toggleTheme}
+                  className="w-10 h-10 rounded-full flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-all duration-300 hover:scale-105 active:scale-95"
+                  aria-label="Toggle theme"
+                >
+                  {isDark ? (
+                    <Sun className="w-4 h-4 text-foreground" />
+                  ) : (
+                    <Moon className="w-4 h-4 text-foreground" />
+                  )}
+                </button>
               </div>
-
-              <button
-                onClick={toggleTheme}
-                className="w-10 h-10 rounded-full flex items-center justify-center bg-secondary/50 hover:bg-secondary transition-all duration-300 hover:scale-105 active:scale-95"
-                aria-label="Toggle theme"
-              >
-                {isDark ? (
-                  <Sun className="w-4 h-4 text-foreground" />
-                ) : (
-                  <Moon className="w-4 h-4 text-foreground" />
-                )}
-              </button>
             </div>
           </motion.nav>
         )}
