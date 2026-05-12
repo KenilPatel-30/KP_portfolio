@@ -10,11 +10,14 @@ import portfolioElearning from '@/assets/portfolio-elearning.png';
 import portfolioIdcard from '@/assets/portfolio-idcard.png';
 import portfolioMarketingFlyer from '@/assets/portfolio-marketing-flyer.png';
 import portfolioCookieBranding from '@/assets/portfolio-cookie-branding.png';
+import portfolioTshirt from '@/assets/portfolio-tshirt.png';
+import portfolioBrochure from '@/assets/portfolio-brochure.png';
 
 interface WorkItem {
   id: number;
   title: string;
   category: string;
+  mediaType: 'Print Media' | 'Digital Media' | 'Logo and Branding';
   description: string;
   tags: string[];
   gradient: string;
@@ -26,6 +29,7 @@ const workItems: WorkItem[] = [
     id: 1,
     title: 'Instagram Post',
     category: 'Social Media Design',
+    mediaType: 'Digital Media',
     description: 'A health-focused mobile app designed to help users track diabetes-related data through a simple and accessible interface.',
     tags: ['Usability', 'Accessibility', 'Clean UI'],
     gradient: 'from-primary/20 via-secondary to-muted',
@@ -35,6 +39,7 @@ const workItems: WorkItem[] = [
     id: 2,
     title: 'E-Learning App',
     category: 'Product Design',
+    mediaType: 'Digital Media',
     description: 'An educational platform designed to deliver structured learning content with an intuitive and engaging user experience.',
     tags: ['Information Hierarchy', 'User Flow', 'Engagement'],
     gradient: 'from-secondary via-muted to-primary/10',
@@ -44,6 +49,7 @@ const workItems: WorkItem[] = [
     id: 3,
     title: 'Business Card',
     category: 'Brand Identity',
+    mediaType: 'Print Media',
     description: 'A finance app concept that helps users track expenses and manage personal finances using a clean, minimal layout.',
     tags: ['Data Clarity', 'Visual Balance', 'Simplicity'],
     gradient: 'from-muted via-primary/15 to-secondary',
@@ -53,6 +59,7 @@ const workItems: WorkItem[] = [
     id: 4,
     title: 'ID-Card',
     category: 'Brand Identity',
+    mediaType: 'Print Media',
     description: 'Designed the delivery section of a food delivery app, focusing on smooth order tracking and delivery flow.',
     tags: ['User Journey', 'Task Efficiency', 'Clarity'],
     gradient: 'from-primary/15 via-secondary to-muted',
@@ -62,6 +69,7 @@ const workItems: WorkItem[] = [
     id: 5,
     title: 'Logo & Branding',
     category: 'Brand Identity',
+    mediaType: 'Logo and Branding',
     description: 'Complete branding and logo design for a cookie-based startup.',
     tags: ['Logo Design', 'Visual Identity', 'Branding'],
     gradient: 'from-primary/30 via-secondary to-muted',
@@ -71,10 +79,31 @@ const workItems: WorkItem[] = [
     id: 6,
     title: 'Marketing Flyer',
     category: 'Print Design',
+    mediaType: 'Print Media',
     description: 'Graphic design work including menus, social media, and marketing materials.',
     tags: ['Marketing', 'Social Media', 'Print'],
     gradient: 'from-secondary via-muted to-primary/20',
     image: portfolioMarketingFlyer,
+  },
+  {
+    id: 7,
+    title: 'T-Shirt Design',
+    category: 'Apparel Design',
+    mediaType: 'Print Media',
+    description: 'Custom t-shirt design featuring a unique glitch-style typography.',
+    tags: ['Apparel', 'Typography', 'Graphic Design'],
+    gradient: 'from-primary/20 via-secondary to-muted',
+    image: portfolioTshirt,
+  },
+  {
+    id: 8,
+    title: 'Brochure Design',
+    category: 'Print Design',
+    mediaType: 'Print Media',
+    description: 'A detailed event brochure design with information about tech workshops and cultural nights.',
+    tags: ['Layout', 'Information Design', 'Events'],
+    gradient: 'from-secondary via-muted to-primary/10',
+    image: portfolioBrochure,
   },
 ];
 
@@ -101,9 +130,9 @@ const itemVariants: Variants = {
 
 const Work = () => {
   const [selectedItem, setSelectedItem] = useState<WorkItem | null>(null);
-  const [activeTab, setActiveTab] = useState<'Print Media' | 'Digital Media'>('Print Media');
+  const [activeTab, setActiveTab] = useState<'Logo and Branding' | 'Print Media' | 'Digital Media'>('Logo and Branding');
 
-  const tabs = ['Print Media', 'Digital Media'] as const;
+  const tabs = ['Logo and Branding', 'Print Media', 'Digital Media'] as const;
 
   return (
     <section id="portfolio" className="py-20 relative">
@@ -154,7 +183,9 @@ const Work = () => {
           transition={{ duration: 0.5 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {workItems.map((item) => (
+          {workItems
+            .filter((item) => item.mediaType === activeTab)
+            .map((item) => (
             <motion.div key={`${activeTab}-${item.id}`} variants={itemVariants} initial="hidden" animate="visible">
               <PortfolioCard
                 title={item.title}
