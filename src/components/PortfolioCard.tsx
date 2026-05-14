@@ -11,9 +11,12 @@ interface PortfolioCardProps {
   gradient: string;
   image?: string;
   onClick?: () => void;
+  containImage?: boolean;
+  customBg?: string;
+  radialVariant?: 'center' | 'top-right' | 'bottom-left' | 'none';
 }
 
-const PortfolioCard = ({ title, category, description, tags, gradient, image, onClick }: PortfolioCardProps) => {
+const PortfolioCard = ({ title, category, description, tags, gradient, image, onClick, containImage, customBg, radialVariant = 'center' }: PortfolioCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -66,13 +69,43 @@ const PortfolioCard = ({ title, category, description, tags, gradient, image, on
           transition={{ duration: 0.4 }}
         />
 
-        <div className={`aspect-[16/10] ${image ? '' : `bg-gradient-to-br ${gradient}`} relative overflow-hidden`}>
+        <div 
+          className={`aspect-[16/10] ${image ? (containImage ? (customBg ? '' : 'bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200/50') : '') : `bg-gradient-to-br ${gradient}`} relative overflow-hidden flex items-center justify-center`}
+          style={customBg ? { backgroundColor: customBg } : {}}
+        >
           {image && (
-            <img
-              src={image}
-              alt={title}
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
+            <>
+              {containImage ? (
+                <>
+                  {/* Enhanced shiny radial glow with variants */}
+                  {radialVariant !== 'none' && (
+                    <div 
+                      className={`absolute inset-0 opacity-80 pointer-events-none`}
+                      style={{ 
+                        backgroundImage: customBg 
+                          ? `radial-gradient(circle at ${
+                              radialVariant === 'center' ? 'center' : 
+                              radialVariant === 'top-right' ? '80% 20%' : 
+                              radialVariant === 'bottom-left' ? '20% 80%' : 'center'
+                            }, white 0%, transparent 70%)`
+                          : `radial-gradient(circle at center, white 90%, transparent 70%)` 
+                      }}
+                    />
+                  )}
+                  <img
+                    src={image}
+                    alt={title}
+                    className="relative z-10 w-full h-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                  />
+                </>
+              ) : (
+                <img
+                  src={image}
+                  alt={title}
+                  className="absolute inset-0 w-full h-full object-cover object-center"
+                />
+              )}
+            </>
           )}
 
           <motion.div
@@ -94,7 +127,7 @@ const PortfolioCard = ({ title, category, description, tags, gradient, image, on
           />
 
           <motion.div
-            className="absolute bottom-6 left-6 right-6"
+            className="absolute bottom-6 left-6 right-6 z-20"
             animate={{ opacity: isHovered ? 0 : 1, y: isHovered ? 10 : 0 }}
             transition={{ duration: 0.3 }}
             style={{ transform: 'translateZ(20px)' }}
@@ -115,7 +148,7 @@ const PortfolioCard = ({ title, category, description, tags, gradient, image, on
           />
 
           <motion.div
-            className="absolute bottom-0 left-0 right-0 p-6"
+            className="absolute bottom-0 left-0 right-0 p-6 z-20"
             animate={{ y: isHovered ? 0 : 40, opacity: isHovered ? 1 : 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
             style={{ transform: 'translateZ(30px)' }}
