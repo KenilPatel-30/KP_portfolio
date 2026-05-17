@@ -9,7 +9,7 @@ import portfolioBusinessCard from '@/assets/portfolio-business-card.png';
 import portfolioElearning from '@/assets/portfolio-elearning.png';
 import portfolioIdcard from '@/assets/portfolio-idcard.png';
 import portfolioMarketingFlyer from '@/assets/portfolio-marketing-flyer.png';
-import portfolioCookieBranding from '@/assets/portfolio-cookie-branding.png';
+import portfolioCookieBranding from '@/assets/portfolio-cookie-branding.jpg';
 import portfolioTshirt from '@/assets/portfolio-tshirt.png';
 import portfolioBrochure from '@/assets/portfolio-brochure.png';
 import portfolioCertificate from '@/assets/portfolio-certificate.jpg';
@@ -22,6 +22,9 @@ import portfolioChatbotLogo from '@/assets/portfolio-chatbot-logo.jpg';
 import portfolioArkaExportsLogo from '@/assets/portfolio-arka-exports-logo.jpg';
 import portfolioMottoLogo from '@/assets/portfolio-motto-logo.jpg';
 import portfolioPoster from '@/assets/portfolio-poster.png';
+import portfolioKrishiSarthLogo from '@/assets/portfolio-krishi-sarth-logo.jpg';
+import portfolioBadge from '@/assets/portfolio-badge.jpg';
+import portfolioDropdownBanner from '@/assets/portfolio-dropdown-banner.jpg';
 
 
 interface WorkItem {
@@ -145,6 +148,26 @@ const workItems: WorkItem[] = [
     image: portfolioPoster,
   },
   {
+    id: 20,
+    title: 'Badge Design',
+    category: 'Print Design',
+    mediaType: 'Print Media',
+    description: 'A professional magnetic badge design for the Vice President of Ananta 25 at GSFC University.',
+    tags: ['Badge', 'Event Branding', 'Identity'],
+    gradient: 'from-secondary via-muted to-primary/10',
+    image: portfolioBadge,
+  },
+  {
+    id: 21,
+    title: 'Drop Down Banner Design',
+    category: 'Print Design',
+    mediaType: 'Print Media',
+    description: 'A massive drop-down banner for the AIKYA cultural fest, featuring a futuristic VR theme.',
+    tags: ['Banner', 'Large Format Print', 'Event Branding'],
+    gradient: 'from-muted via-primary/15 to-secondary',
+    image: portfolioDropdownBanner,
+  },
+  {
     id: 1,
     title: 'Instagram Post',
     category: 'Social Media Design',
@@ -223,6 +246,16 @@ const workItems: WorkItem[] = [
     tags: ['Logo Design', 'Motto', 'Branding'],
     gradient: 'from-muted via-primary/15 to-secondary',
     image: portfolioMottoLogo,
+  },
+  {
+    id: 19,
+    title: 'Krishi Sarth Logo',
+    category: 'Brand Identity',
+    mediaType: 'Logo & Branding',
+    description: 'A minimalist and elegant logo design for Krishi Sarth, representing agricultural growth and sustainability.',
+    tags: ['Logo Design', 'Agriculture', 'Minimalist'],
+    gradient: 'from-primary/20 via-secondary to-muted',
+    image: portfolioKrishiSarthLogo,
   },
 ];
 
