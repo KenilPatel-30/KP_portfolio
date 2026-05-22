@@ -25,13 +25,16 @@ import portfolioPoster from '@/assets/portfolio-poster.png';
 import portfolioKrishiSarthLogo from '@/assets/portfolio-krishi-sarth-logo.jpg';
 import portfolioBadge from '@/assets/portfolio-badge.jpg';
 import portfolioDropdownBanner from '@/assets/portfolio-dropdown-banner.jpg';
+import portfolioDiabetesNavigator from '@/assets/portfolio-diabetes-navigator.png';
+import portfolioSelfLearning from '@/assets/portfolio-self-learning.jpg';
+import portfolioDocmorph from '@/assets/portfolio-docmorph.png';
 
 
 interface WorkItem {
   id: number;
   title: string;
   category: string;
-  mediaType: 'Print Media' | 'Digital Media' | 'Logo & Branding';
+  mediaType: 'Digital & Print Media' | 'Logo & Branding' | 'UI/UX';
   description: string;
   tags: string[];
   gradient: string;
@@ -46,7 +49,7 @@ const workItems: WorkItem[] = [
     id: 9,
     title: 'Certificate',
     category: 'Achievement',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'Awarded for invaluable contribution as Resource Head for Ananta\'24 - Innovation Inspired Technology.',
     tags: ['Achievement', 'Recognition', 'Event Management'],
     gradient: 'from-primary/20 via-secondary to-muted',
@@ -56,7 +59,7 @@ const workItems: WorkItem[] = [
     id: 12,
     title: 'Standee',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'A Standee for Shark Tank event, focusing on entrepreneurship and incubation support.',
     tags: ['Standee', 'Event Branding', 'Entrepreneurship'],
     gradient: 'from-muted via-primary/15 to-secondary',
@@ -69,7 +72,7 @@ const workItems: WorkItem[] = [
     id: 13,
     title: 'Diary',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'Custom diary design for Ananta\'25, featuring vibrant doodles and an elegant cover.',
     tags: ['Diary', 'Stationery', 'Ananta'],
     gradient: 'from-secondary via-muted to-primary/10',
@@ -79,7 +82,7 @@ const workItems: WorkItem[] = [
     id: 14,
     title: 'Magazine',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'A professional magazine layout for Gravity, showcasing student achievements and campus stories.',
     tags: ['Magazine', 'Editorial Design', 'Layout'],
     gradient: 'from-primary/20 via-secondary to-muted',
@@ -89,7 +92,7 @@ const workItems: WorkItem[] = [
     id: 6,
     title: 'Flyer',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'Graphic design work including menus, social media, and marketing materials.',
     tags: ['Marketing', 'Social Media', 'Print'],
     gradient: 'from-secondary via-muted to-primary/20',
@@ -101,7 +104,7 @@ const workItems: WorkItem[] = [
     id: 8,
     title: 'Brochure Design',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'A detailed event brochure design with information about tech workshops and cultural nights.',
     tags: ['Layout', 'Information Design', 'Events'],
     gradient: 'from-secondary via-muted to-primary/10',
@@ -111,7 +114,7 @@ const workItems: WorkItem[] = [
     id: 3,
     title: 'Business Card',
     category: 'Brand Identity',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'A finance app concept that helps users track expenses and manage personal finances using a clean, minimal layout.',
     tags: ['Data Clarity', 'Visual Balance', 'Simplicity'],
     gradient: 'from-muted via-primary/15 to-secondary',
@@ -121,7 +124,7 @@ const workItems: WorkItem[] = [
     id: 7,
     title: 'T-Shirt Design',
     category: 'Apparel Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'Custom t-shirt design featuring a unique glitch-style typography.',
     tags: ['Apparel', 'Typography', 'Graphic Design'],
     gradient: 'from-primary/20 via-secondary to-muted',
@@ -131,7 +134,7 @@ const workItems: WorkItem[] = [
     id: 4,
     title: 'ID-Card',
     category: 'Brand Identity',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'Designed the delivery section of a food delivery app, focusing on smooth order tracking and delivery flow.',
     tags: ['User Journey', 'Task Efficiency', 'Clarity'],
     gradient: 'from-primary/15 via-secondary to-muted',
@@ -141,7 +144,7 @@ const workItems: WorkItem[] = [
     id: 18,
     title: 'Poster Design',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'An event poster for "Code Pictionary" at Ananta, designed for maximum visibility and engagement.',
     tags: ['Poster', 'Event Branding', 'Typography'],
     gradient: 'from-primary/20 via-secondary to-muted',
@@ -151,7 +154,7 @@ const workItems: WorkItem[] = [
     id: 20,
     title: 'Badge Design',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'A professional magnetic badge design for the Vice President of Ananta 25 at GSFC University.',
     tags: ['Badge', 'Event Branding', 'Identity'],
     gradient: 'from-secondary via-muted to-primary/10',
@@ -161,7 +164,7 @@ const workItems: WorkItem[] = [
     id: 21,
     title: 'Drop Down Banner Design',
     category: 'Print Design',
-    mediaType: 'Print Media',
+    mediaType: 'Digital & Print Media',
     description: 'A massive drop-down banner for the AIKYA cultural fest, featuring a futuristic VR theme.',
     tags: ['Banner', 'Large Format Print', 'Event Branding'],
     gradient: 'from-muted via-primary/15 to-secondary',
@@ -171,21 +174,42 @@ const workItems: WorkItem[] = [
     id: 1,
     title: 'Instagram Post',
     category: 'Social Media Design',
-    mediaType: 'Digital Media',
+    mediaType: 'Digital & Print Media',
     description: 'A vibrant Instagram post design for Ananta\'25 featuring an AI-powered chatbot, optimized for social media engagement.',
     tags: ['Social Media', '3D Illustration', 'Branding'],
     gradient: 'from-primary/20 via-secondary to-muted',
     image: portfolioInstagramPost,
   },
+
   {
-    id: 2,
-    title: 'E-Learning App',
+    id: 22,
+    title: 'Diabetes Self Navigator App',
     category: 'Product Design',
-    mediaType: 'Digital Media',
-    description: 'An educational platform designed to deliver structured learning content with an intuitive and engaging user experience.',
-    tags: ['Information Hierarchy', 'User Flow', 'Engagement'],
+    mediaType: 'UI/UX',
+    description: 'A comprehensive mobile app designed to help users manage and navigate their diabetes journey effectively.',
+    tags: ['Mobile App', 'Health Tech', 'User Experience'],
+    gradient: 'from-primary/20 via-secondary to-muted',
+    image: portfolioDiabetesNavigator,
+  },
+  {
+    id: 23,
+    title: 'Self-Learning Course App',
+    category: 'Product Design',
+    mediaType: 'UI/UX',
+    description: 'A clean and user-friendly interface for a self-learning platform, designed to track courses and certificates efficiently.',
+    tags: ['Mobile App', 'E-Learning', 'User Flow'],
     gradient: 'from-secondary via-muted to-primary/10',
-    image: portfolioElearning,
+    image: portfolioSelfLearning,
+  },
+  {
+    id: 24,
+    title: 'DocMorph',
+    category: 'Product Design',
+    mediaType: 'UI/UX',
+    description: 'A powerful web application designed to convert raw documents into professionally formatted outputs instantly.',
+    tags: ['Web App', 'SaaS', 'Dashboard'],
+    gradient: 'from-primary/20 via-secondary to-muted',
+    image: portfolioDocmorph,
   },
   {
     id: 5,
@@ -282,9 +306,9 @@ const itemVariants: Variants = {
 
 const Work = () => {
   const [selectedItem, setSelectedItem] = useState<WorkItem | null>(null);
-  const [activeTab, setActiveTab] = useState<'Logo & Branding' | 'Print Media' | 'Digital Media'>('Logo & Branding');
+  const [activeTab, setActiveTab] = useState<'Logo & Branding' | 'Digital & Print Media' | 'UI/UX'>('Logo & Branding');
 
-  const tabs = ['Logo & Branding', 'Print Media', 'Digital Media'] as const;
+  const tabs = ['Logo & Branding', 'Digital & Print Media', 'UI/UX'] as const;
 
   return (
     <section id="portfolio" className="py-20 relative">
