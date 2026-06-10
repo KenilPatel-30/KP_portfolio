@@ -306,13 +306,13 @@ const itemVariants: Variants = {
 
 const Work = () => {
   const [selectedItem, setSelectedItem] = useState<WorkItem | null>(null);
-  const tabIds = ['Logo & Branding', 'Digital & Print Media', 'UI/UX'] as const;
+  const tabIds = ['Logo & Branding', 'UI/UX', 'Digital & Print Media'] as const;
   type TabId = typeof tabIds[number];
 
   const tabs: { id: TabId; label: string }[] = [
     { id: 'Logo & Branding', label: 'Logo & Branding' },
-    { id: 'Digital & Print Media', label: 'Digital & Print Media' },
     { id: 'UI/UX', label: 'UI/UX' },
+    { id: 'Digital & Print Media', label: 'Digital & Print Media' },
   ];
 
   const [activeTab, setActiveTab] = useState<TabId>('Logo & Branding');
@@ -333,8 +333,16 @@ const Work = () => {
           </motion.div>
 
           {/* Premium Media Tabs - Segmented Pill Style */}
-          <div className="flex justify-center mb-16 px-4">
-            <div className="inline-flex flex-wrap justify-center items-center p-1.5 bg-card/40 border border-border/40 rounded-[2rem] sm:rounded-full backdrop-blur-md">
+          <div 
+            className="flex justify-start sm:justify-center mb-16 px-4 w-full overflow-x-auto" 
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <style>{`
+              .hide-scrollbar::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            <div className="inline-flex items-center p-1.5 bg-card/40 border border-border/40 rounded-full backdrop-blur-md min-w-max mx-auto hide-scrollbar">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 
