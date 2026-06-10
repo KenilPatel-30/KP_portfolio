@@ -306,9 +306,16 @@ const itemVariants: Variants = {
 
 const Work = () => {
   const [selectedItem, setSelectedItem] = useState<WorkItem | null>(null);
-  const [activeTab, setActiveTab] = useState<'Logo & Branding' | 'Digital & Print Media' | 'UI/UX'>('Logo & Branding');
+  const tabIds = ['Logo & Branding', 'Digital & Print Media', 'UI/UX'] as const;
+  type TabId = typeof tabIds[number];
 
-  const tabs = ['Logo & Branding', 'Digital & Print Media', 'UI/UX'] as const;
+  const tabs: { id: TabId; label: string }[] = [
+    { id: 'Logo & Branding', label: 'Logo & Branding' },
+    { id: 'Digital & Print Media', label: 'Digital & Print Media' },
+    { id: 'UI/UX', label: 'UI/UX' },
+  ];
+
+  const [activeTab, setActiveTab] = useState<TabId>('Logo & Branding');
 
   return (
     <section id="portfolio" className="py-20 relative">
@@ -325,28 +332,39 @@ const Work = () => {
             <div className="section-divider mx-auto" />
           </motion.div>
 
-          {/* Premium Media Tabs - Pill Style */}
-          <div className="flex justify-center mb-16">
-            <div className="inline-flex items-center p-1.5 bg-card/40 border border-border/40 rounded-full backdrop-blur-md">
-              {tabs.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className="relative px-8 py-2.5 rounded-full transition-colors duration-300"
-                >
-                  {activeTab === tab && (
-                    <motion.div
-                      layoutId="activePill"
-                      className="absolute inset-0 bg-muted-foreground/10 border border-white/5 rounded-full shadow-lg"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                  <span className={`relative z-10 text-sm md:text-base font-bold tracking-tight transition-colors duration-300 ${activeTab === tab ? 'text-foreground' : 'text-muted-foreground hover:text-foreground/70'
+          {/* Premium Media Tabs - Segmented Pill Style */}
+          <div className="flex justify-center mb-16 px-4">
+            <div className="inline-flex flex-wrap justify-center items-center p-1.5 bg-card/40 border border-border/40 rounded-[2rem] sm:rounded-full backdrop-blur-md">
+              {tabs.map((tab) => {
+                const isActive = activeTab === tab.id;
+                
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`group relative flex items-center justify-center px-6 py-2.5 sm:px-8 sm:py-3 rounded-full transition-all duration-300 overflow-hidden ${
+                      isActive ? '' : 'hover:bg-foreground/5'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeCategoryBg"
+                        className="absolute inset-0 bg-primary shadow-lg shadow-primary/30 rounded-full"
+                        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                      />
+                    )}
+                    
+                    {/* Glassmorphism shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-full" />
+                    
+                    <span className={`relative z-10 text-sm sm:text-base font-bold tracking-tight transition-colors duration-300 ${
+                      isActive ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'
                     }`}>
-                    {tab}
-                  </span>
-                </button>
-              ))}
+                      {tab.label}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
