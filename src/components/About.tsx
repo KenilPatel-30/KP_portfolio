@@ -277,7 +277,7 @@ const About = () => {
               >
                 <div className="py-10 border-b border-border hover:border-primary/50 transition-colors duration-500 cursor-default">
                   <div className="flex items-start gap-8">
-                    <span className="text-primary font-mono text-sm mt-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <span className="text-primary font-mono text-base md:text-lg font-bold mt-2 opacity-80 group-hover:opacity-100 transition-opacity">
                       {service.number}
                     </span>
                     <div className="flex-1 space-y-3">
