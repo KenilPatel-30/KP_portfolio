@@ -212,6 +212,16 @@ const workItems: WorkItem[] = [
     image: portfolioDocmorph,
   },
   {
+    id: 19,
+    title: 'Krishi Sarth Logo',
+    category: 'Brand Identity',
+    mediaType: 'Logo & Branding',
+    description: 'A minimalist and elegant logo design for Krishi Sarth, representing agricultural growth and sustainability.',
+    tags: ['Logo Design', 'Agriculture', 'Minimalist'],
+    gradient: 'from-primary/20 via-secondary to-muted',
+    image: portfolioKrishiSarthLogo,
+  },
+  {
     id: 5,
     title: 'Cookie Shop Logo',
     category: 'Brand Identity',
@@ -242,16 +252,6 @@ const workItems: WorkItem[] = [
     image: portfolioDxdTradersLogo,
   },
   {
-    id: 15,
-    title: 'Chatbot Logo',
-    category: 'Brand Identity',
-    mediaType: 'Logo & Branding',
-    description: 'A modern, friendly chatbot logo design featuring a minimalist robot icon.',
-    tags: ['Logo Design', 'AI', 'Minimalism'],
-    gradient: 'from-primary/20 via-secondary to-muted',
-    image: portfolioChatbotLogo,
-  },
-  {
     id: 16,
     title: 'Arka Exports Logo',
     category: 'Brand Identity',
@@ -272,14 +272,14 @@ const workItems: WorkItem[] = [
     image: portfolioMottoLogo,
   },
   {
-    id: 19,
-    title: 'Krishi Sarth Logo',
+    id: 15,
+    title: 'Chatbot Logo',
     category: 'Brand Identity',
     mediaType: 'Logo & Branding',
-    description: 'A minimalist and elegant logo design for Krishi Sarth, representing agricultural growth and sustainability.',
-    tags: ['Logo Design', 'Agriculture', 'Minimalist'],
+    description: 'A modern, friendly chatbot logo design featuring a minimalist robot icon.',
+    tags: ['Logo Design', 'AI', 'Minimalism'],
     gradient: 'from-primary/20 via-secondary to-muted',
-    image: portfolioKrishiSarthLogo,
+    image: portfolioChatbotLogo,
   },
 ];
 
@@ -316,6 +316,38 @@ const Work = () => {
   ];
 
   const [activeTab, setActiveTab] = useState<TabId>('Logo & Branding');
+
+  // Swipe gesture logic for gliding between tabs
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe || isRightSwipe) {
+      const currentIndex = tabIds.indexOf(activeTab);
+      if (isLeftSwipe && currentIndex < tabIds.length - 1) {
+        setActiveTab(tabIds[currentIndex + 1]);
+      }
+      if (isRightSwipe && currentIndex > 0) {
+        setActiveTab(tabIds[currentIndex - 1]);
+      }
+    }
+  };
 
   return (
     <section id="portfolio" className="py-20 relative">
@@ -357,9 +389,12 @@ const Work = () => {
                     {/* Glassmorphism shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-full" />
                     
-                    <span className={`relative z-10 text-[10px] min-[375px]:text-[11px] sm:text-base font-bold tracking-tighter sm:tracking-tight transition-colors duration-300 ${
-                      isActive ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'
-                    }`}>
+                    <span 
+                      className={`relative z-10 font-bold tracking-tighter sm:tracking-tight transition-colors duration-300 ${
+                        isActive ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'
+                      }`}
+                      style={{ fontSize: 'clamp(9px, 2.5vw, 16px)' }}
+                    >
                       {tab.label}
                     </span>
                   </button>
@@ -368,33 +403,40 @@ const Work = () => {
             </div>
           </div>
 
-          <motion.div
-            key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          <div 
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+            className="w-full min-h-[400px] touch-pan-y"
           >
-            {workItems
-              .filter((item) => item.mediaType === activeTab)
-              .map((item) => (
-                <motion.div key={`${activeTab}-${item.id}`} variants={itemVariants} initial="hidden" animate="visible">
-                  <PortfolioCard
-                    title={item.title}
-                    category={item.category}
-                    description={item.description}
-                    tags={item.tags}
-                    gradient={item.gradient}
-                    image={item.image}
-                    containImage={item.containImage}
-                    customBg={item.customBg}
-                    radialVariant={item.radialVariant}
-                    onClick={() => setSelectedItem(item)}
-                  />
-                </motion.div>
-              ))}
-          </motion.div>
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            >
+              {workItems
+                .filter((item) => item.mediaType === activeTab)
+                .map((item) => (
+                  <motion.div key={`${activeTab}-${item.id}`} variants={itemVariants} initial="hidden" animate="visible">
+                    <PortfolioCard
+                      title={item.title}
+                      category={item.category}
+                      description={item.description}
+                      tags={item.tags}
+                      gradient={item.gradient}
+                      image={item.image}
+                      containImage={item.containImage}
+                      customBg={item.customBg}
+                      radialVariant={item.radialVariant}
+                      onClick={() => setSelectedItem(item)}
+                    />
+                  </motion.div>
+                ))}
+            </motion.div>
+          </div>
         </div>
 
         {/* Full Image Modal */}
