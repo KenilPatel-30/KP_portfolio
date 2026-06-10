@@ -333,16 +333,8 @@ const Work = () => {
           </motion.div>
 
           {/* Premium Media Tabs - Segmented Pill Style */}
-          <div 
-            className="flex justify-start sm:justify-center mb-16 px-4 w-full overflow-x-auto" 
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            <style>{`
-              .hide-scrollbar::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
-            <div className="inline-flex items-center p-1.5 bg-card/40 border border-border/40 rounded-full backdrop-blur-md min-w-max mx-auto hide-scrollbar">
+          <div className="flex justify-center mb-8 sm:mb-16 px-2 sm:px-4 w-full">
+            <div className="flex items-center p-1 sm:p-1.5 bg-card/40 border border-border/40 rounded-full backdrop-blur-md w-full max-w-fit overflow-hidden">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 
@@ -350,14 +342,14 @@ const Work = () => {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`group relative flex items-center justify-center px-6 py-2.5 sm:px-8 sm:py-3 rounded-full transition-all duration-300 overflow-hidden ${
+                    className={`group relative flex items-center justify-center px-2 py-2 min-[375px]:px-3 sm:px-6 sm:py-2.5 rounded-full transition-all duration-300 overflow-hidden whitespace-nowrap ${
                       isActive ? '' : 'hover:bg-foreground/5'
                     }`}
                   >
                     {isActive && (
                       <motion.div
                         layoutId="activeCategoryBg"
-                        className="absolute inset-0 bg-primary shadow-lg shadow-primary/30 rounded-full"
+                        className="absolute inset-0 bg-primary shadow-sm sm:shadow-lg shadow-primary/30 rounded-full"
                         transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                       />
                     )}
@@ -365,7 +357,7 @@ const Work = () => {
                     {/* Glassmorphism shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/10 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-full" />
                     
-                    <span className={`relative z-10 text-sm sm:text-base font-bold tracking-tight transition-colors duration-300 ${
+                    <span className={`relative z-10 text-[10px] min-[375px]:text-[11px] sm:text-base font-bold tracking-tighter sm:tracking-tight transition-colors duration-300 ${
                       isActive ? 'text-primary-foreground' : 'text-muted-foreground group-hover:text-foreground'
                     }`}>
                       {tab.label}
