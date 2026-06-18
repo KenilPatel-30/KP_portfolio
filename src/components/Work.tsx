@@ -329,6 +329,22 @@ const Work = () => {
 
   const [activeTab, setActiveTab] = useState<TabId>('Logo & Branding');
 
+  const handleTabChange = (tabId: TabId) => {
+    setActiveTab(tabId);
+    
+    // Smooth scroll back to the top of the portfolio section
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+      // Get the top position of the section, offsetting by ~80px for the sticky tab bar
+      const topOffset = portfolioSection.getBoundingClientRect().top + window.scrollY - 80;
+      
+      window.scrollTo({
+        top: topOffset,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Swipe gesture logic for gliding between tabs
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -353,10 +369,10 @@ const Work = () => {
     if (isLeftSwipe || isRightSwipe) {
       const currentIndex = tabIds.indexOf(activeTab);
       if (isLeftSwipe && currentIndex < tabIds.length - 1) {
-        setActiveTab(tabIds[currentIndex + 1]);
+        handleTabChange(tabIds[currentIndex + 1]);
       }
       if (isRightSwipe && currentIndex > 0) {
-        setActiveTab(tabIds[currentIndex - 1]);
+        handleTabChange(tabIds[currentIndex - 1]);
       }
     }
   };
@@ -385,7 +401,7 @@ const Work = () => {
                 return (
                   <button
                     key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
+                    onClick={() => handleTabChange(tab.id)}
                     className={`group relative flex items-center justify-center px-2 py-2 min-[375px]:px-3 sm:px-6 sm:py-2.5 rounded-full transition-all duration-300 overflow-hidden whitespace-nowrap ${
                       isActive ? '' : 'hover:bg-foreground/5'
                     }`}
