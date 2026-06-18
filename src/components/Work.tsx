@@ -394,7 +394,7 @@ const Work = () => {
 
           {/* Premium Media Tabs - Segmented Pill Style (Sticky) */}
           <div className="sticky top-6 z-40 flex justify-center mb-8 sm:mb-16 px-2 sm:px-4 w-full pointer-events-none">
-            <div className="pointer-events-auto flex items-center p-1 sm:p-1.5 bg-background/90 border border-border shadow-lg rounded-full backdrop-blur-xl w-full max-w-fit overflow-hidden">
+            <div className="pointer-events-auto flex items-center gap-1 sm:gap-2 p-1 sm:p-1.5 bg-background/90 border border-border shadow-lg rounded-full backdrop-blur-xl w-full max-w-fit overflow-hidden">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 
@@ -402,8 +402,8 @@ const Work = () => {
                   <button
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`group relative flex items-center justify-center px-2 py-2 min-[375px]:px-3 sm:px-6 sm:py-2.5 rounded-full transition-all duration-300 overflow-hidden whitespace-nowrap ${
-                      isActive ? '' : 'hover:bg-foreground/5'
+                    className={`group relative flex items-center justify-center px-2 py-2 min-[375px]:px-3 sm:px-6 sm:py-2.5 rounded-full transition-all duration-300 overflow-hidden whitespace-nowrap border ${
+                      isActive ? 'border-transparent' : 'border-border/80 bg-secondary/30 hover:bg-secondary/60 hover:border-primary/50 shadow-sm'
                     }`}
                   >
                     {isActive && (
