@@ -376,9 +376,9 @@ const Work = () => {
             <div className="section-divider mx-auto" />
           </motion.div>
 
-          {/* Premium Media Tabs - Segmented Pill Style */}
-          <div className="flex justify-center mb-8 sm:mb-16 px-2 sm:px-4 w-full">
-            <div className="flex items-center p-1 sm:p-1.5 bg-muted/60 dark:bg-card/40 border border-border shadow-sm rounded-full backdrop-blur-md w-full max-w-fit overflow-hidden">
+          {/* Premium Media Tabs - Segmented Pill Style (Sticky) */}
+          <div className="sticky top-6 z-40 flex justify-center mb-8 sm:mb-16 px-2 sm:px-4 w-full pointer-events-none">
+            <div className="pointer-events-auto flex items-center p-1 sm:p-1.5 bg-background/90 border border-border shadow-lg rounded-full backdrop-blur-xl w-full max-w-fit overflow-hidden">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id;
                 
