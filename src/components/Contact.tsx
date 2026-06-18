@@ -29,9 +29,6 @@ const Contact = () => {
       {/* Top accent line */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-      {/* Decorative background element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-
       <div className="container mx-auto px-6 md:px-12 relative z-10">
         <div className="max-w-7xl mx-auto text-center space-y-16">
           <motion.div
@@ -93,7 +90,7 @@ const Contact = () => {
                 className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-2 opacity-60 hover:opacity-100"
               >
                 <Copy className="w-3.5 h-3.5" />
-                <span>Copy email address</span>
+                <span>Copy email</span>
               </button>
             </div>
           </motion.div>

@@ -20,18 +20,18 @@ const Footer = () => {
           <div className="flex items-center gap-4">
             <motion.a
               href="mailto:kenilpatel0230@gmail.com"
-              className="group relative w-10 h-10 rounded-full border-2 border-primary/30 flex items-center justify-center overflow-hidden text-foreground hover:text-primary transition-colors duration-300"
+              className="group relative w-10 h-10 rounded-full border-2 border-primary/30 hover:border-primary flex items-center justify-center overflow-hidden text-foreground hover:text-primary-foreground transition-colors duration-300"
               whileTap={{ scale: 0.95 }}
               aria-label="Email"
             >
-              <span className="absolute inset-0 bg-primary/25 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
+              <span className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
               <Mail className="relative z-10 w-4 h-4" />
             </motion.a>
             <motion.a
               href="https://linkedin.com/in/kenilpatel02"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative w-10 h-10 rounded-full border-2 border-[#0077B5]/30 flex items-center justify-center overflow-hidden text-foreground hover:text-white transition-colors duration-300"
+              className="group relative w-10 h-10 rounded-full border-2 border-[#0077B5]/30 hover:border-[#0077B5] flex items-center justify-center overflow-hidden text-foreground hover:text-white transition-colors duration-300"
               whileTap={{ scale: 0.95 }}
               aria-label="LinkedIn"
             >

@@ -137,7 +137,7 @@ const PortfolioCard = ({ title, category, description, tags, gradient, image, on
                 className="w-2.5 h-2.5 rounded-full bg-primary"
                 animate={{ scale: isHovered ? 1.2 : 1 }}
               />
-              <span className="text-base font-medium text-foreground drop-shadow-md">{title}</span>
+              <span className="text-base font-medium text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">{title}</span>
             </div>
           </motion.div>
 

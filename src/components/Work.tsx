@@ -21,6 +21,7 @@ import portfolioMagazine from '@/assets/portfolio-magazine.jpg';
 import portfolioChatbotLogo from '@/assets/portfolio-chatbot-logo.jpg';
 import portfolioArkaExportsLogo from '@/assets/portfolio-arka-exports-logo.jpg';
 import portfolioMottoLogo from '@/assets/portfolio-motto-logo.jpg';
+import portfolioOrdinaryGuyLogo from '@/assets/portfolio-ordinary-guy-logo.png';
 import portfolioPoster from '@/assets/portfolio-poster.png';
 import portfolioKrishiSarthLogo from '@/assets/portfolio-krishi-sarth-logo.jpg';
 import portfolioBadge from '@/assets/portfolio-badge.jpg';
@@ -211,6 +212,7 @@ const workItems: WorkItem[] = [
     gradient: 'from-primary/20 via-secondary to-muted',
     image: portfolioDocmorph,
   },
+
   {
     id: 19,
     title: 'Krishi Sarth Logo',
@@ -260,6 +262,16 @@ const workItems: WorkItem[] = [
     tags: ['Logo Design', 'Corporate', 'Exports'],
     gradient: 'from-secondary via-muted to-primary/10',
     image: portfolioArkaExportsLogo,
+  },
+  {
+    id: 99,
+    title: 'Social Media Page Logo',
+    category: 'Brand Identity',
+    mediaType: 'Logo & Branding',
+    description: 'A versatile and scalable custom mark designed specifically for social platforms like Instagram and YouTube. Simple, relatable, and unique.',
+    tags: ['Logo Design', 'Social Media', 'Branding'],
+    gradient: 'from-primary/20 via-secondary to-muted',
+    image: portfolioOrdinaryGuyLogo,
   },
   {
     id: 17,

@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 const Hero = () => {
   return (
     <section className="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden">
-      {/* Subtle gradient orb */}
-      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
       
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
@@ -40,6 +38,26 @@ const Hero = () => {
             thoughtful interfaces, simple, functional,
             and intentional.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="inline-flex items-center p-1.5 rounded-full bg-background border border-border shadow-sm mt-4"
+          >
+            <button 
+              onClick={() => document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-primary text-primary-foreground px-6 py-2.5 md:px-8 md:py-3 rounded-full font-semibold flex items-center gap-2 hover:bg-primary/90 transition-colors text-sm md:text-base"
+            >
+              Portfolio <span>&gt;</span>
+            </button>
+            <button 
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-6 py-2.5 md:px-8 md:py-3 font-medium hover:text-primary transition-colors text-sm md:text-base text-foreground"
+            >
+              Hire Me
+            </button>
+          </motion.div>
           </div>
         </div>
       </div>
